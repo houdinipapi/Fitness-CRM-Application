@@ -8,6 +8,9 @@ const raleway = Raleway({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "FitNess",
   description: "CRM fitness application",
+  icons: {
+    icon: "/assets/logos/achiomwa.png"
+  }
 };
 
 export default function RootLayout({
