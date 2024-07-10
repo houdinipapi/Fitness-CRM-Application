@@ -4,7 +4,7 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <header>
+    <header className="bg-gray-200">
       <div className="text-blue-400 container mx-auto max-w-screen-xl px-16">
         <div className="flex justify-between items-center">
             <Link href="/">
