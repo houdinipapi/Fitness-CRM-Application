@@ -1,12 +1,12 @@
 import React from 'react'
 import Image from 'next/image'
 
-const Signup = () => {
+const Signin = () => {
   return (
     <div className="min-h-screen relative flex items-center justify-center">
         {/* Background Image */}
         <Image
-            src="/assets/signup/signup1.jpg"
+            src="/assets/signup/signin1.jpg"
             alt="backround image"
             layout="fill"
             objectFit="cover"
@@ -55,7 +55,7 @@ const Signup = () => {
                             </div>
 
                             {/* Confirm Password */}
-                            <div className="mb-4 mx-10">
+                            {/* <div className="mb-4 mx-10">
                                 <div className="flex justify-between items-center">
                                     <label htmlFor="password" className="block text-gray-700 font-bold"> Confirm Password</label>
                                 </div>
@@ -66,22 +66,22 @@ const Signup = () => {
                                     placeholder="Confirm Your Password..."
                                     className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 />
-                            </div>
+                            </div> */}
 
-                            {/* Signup button */}
+                            {/* Signin button */}
                             <div className="mx-10 mb-4 flex justify-center items-center">
                                 <button
                                     type="submit"
                                     className="px-4 py-2 w-1/2 mt-2 text-white bg-blue-500 hover:bg-blue-700 font-bold rounded-full focus:outline-none focus:shadow-outline"
                                 >
-                                    Sign Up
+                                    Log In
                                 </button>
                             </div>
 
-                            {/* Already signed up */}
+                            {/* Not signed up */}
                             <div className="text-center">
-                                <a href="/sign-in" className="text-blue-500 hover:text-blue-700 hover:underline font-semibold">
-                                    Already have an account? Login
+                                <a href="/sign-up" className="text-blue-500 hover:text-blue-700 hover:underline font-semibold">
+                                    Don&apos;t have an account? Sign Up
                                 </a>
                             </div>
                         </form>
@@ -93,4 +93,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default Signin;
