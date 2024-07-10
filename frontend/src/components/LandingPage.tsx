@@ -2,7 +2,7 @@ import React from 'react'
 
 const LandingPage = () => {
   return (
-    <div className="container mx-auto flex items-center justify-between py-2 px-4">
+    <div className="container mx-auto max-w-screen-xl px-16">
       <div>
         <h1 className="font-bold text-xl py-2">FitNess for Every Body</h1>
         <p className="font-semibold pb-2">
