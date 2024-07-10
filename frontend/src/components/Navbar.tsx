@@ -7,7 +7,7 @@ const Navbar = () => {
     <header>
       <div className="text-blue-400 container mx-auto max-w-screen-xl px-16">
         <div className="flex justify-between items-center">
-            <Link href="#">
+            <Link href="/">
               <Image
                 src="/assets/logos/achiomwa.png"
                 alt="logo"
