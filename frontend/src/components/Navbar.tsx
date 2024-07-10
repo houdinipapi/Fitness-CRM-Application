@@ -5,8 +5,8 @@ import React from 'react'
 const Navbar = () => {
   return (
     <header>
-      <div className="text-blue-400">
-        <div className="conatiner mx-auto flex items-center justify-between py-2 px-16">
+      <div className="text-blue-400 bg-orange-100">
+        <div className="container mx-auto flex items-center justify-between py-2 px-4">
             <Link href="#">
               <Image
                 src="/assets/logos/achiomwa.png"
