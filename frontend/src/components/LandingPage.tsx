@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from "next/image"
 
 const LandingPage = () => {
   return (
@@ -19,7 +20,16 @@ const LandingPage = () => {
             <h1 className="font-bold text-[22px] text-orange-600">For Fitness Businesses</h1>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, veniam!</p>
           </div>
-          <div className="h-[400px] bg-center bg-no-repeat bg-cover mt-auto transition duration-300 hover:scale-105"></div>
+
+          <div className="relative h-[400px] mt-auto">
+            <Image
+              src="/assets/landingpage/woman3.png"
+              alt="fitness business"
+              layout="fill"
+              objectFit="cover"
+              className=" rounded-b-2xl"
+            />
+          </div>
         </a>
 
         {/* Second */}
@@ -28,7 +38,15 @@ const LandingPage = () => {
             <h1 className="font-bold text-[22px] text-blue-600">For Corporates</h1>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, veniam!</p>
           </div>
-          <div className="h-[400px] bg-center bg-no-repeat bg-cover mt-auto transition duration-300 hover:scale-105"></div>
+          <div className="relative h-[400px] mt-auto">
+            <Image
+              src="/assets/landingpage/man1.png"
+              alt="fitness business"
+              layout="fill"
+              objectFit="cover"
+              className=" rounded-b-2xl"
+            />
+          </div>
         </a>
 
         {/* Third */}
@@ -37,7 +55,15 @@ const LandingPage = () => {
             <h1 className="font-bold text-[22px] text-purple-700">For Fitness Businesses</h1>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, veniam!</p>
           </div>
-          <div className="h-[400px] bg-center bg-no-repeat bg-cover mt-auto transition duration-300 hover:scale-105"></div>
+          <div className="relative h-[400px] mt-auto">
+            <Image
+              src="/assets/landingpage/woman1.png"
+              alt="fitness business"
+              layout="fill"
+              objectFit="cover"
+              className=" rounded-b-2xl"
+            />
+          </div>
         </a>
       </div>
       
