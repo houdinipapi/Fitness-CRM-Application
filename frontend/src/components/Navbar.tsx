@@ -29,7 +29,7 @@ const Navbar = () => {
                 <Link href="#" legacyBehavior>
                   <a className="px-4 py-2 bg-white text-blue-400 rounded-full hover:bg-blue-500 hover:text-white border border-blue-400 transition">LOGIN</a>
                 </Link>
-                <Link href="#" legacyBehavior>
+                <Link href="/sign-up" legacyBehavior>
                   <a className="px-4 py-2 bg-white text-blue-400 rounded-full hover:bg-blue-500 hover:text-white border border-blue-400 transition">SIGNUP</a>
                 </Link>
                 
