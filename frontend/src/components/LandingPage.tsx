@@ -12,7 +12,7 @@ const LandingPage = () => {
         </p>
       </div>
 
-      <div className="flex flex-wrap mt-8 mb-24">
+      <div className="flex justify-center items-center mt-8 mb-16">
         {/* First */}
         <a href="#" className="flex-1 relative cursor-pointer flex flex-col bg-[#FBE9E7] rounded-2xl mr-8 transition duration-300 hover:shadow-lg hover:scale-105">
           <div className="p-12 pt-4 pb-4">
@@ -34,7 +34,7 @@ const LandingPage = () => {
         {/* Third */}
         <a href="#" className="flex-1 relative cursor-pointer flex flex-col bg-[#EDE7F6] rounded-2xl transition duration-300 hover:shadow-lg hover:scale-105">
           <div className="p-12 pt-4 pb-4">
-            <h1 className="font-bold text-[22px] text-[#7E57C2]">For Fitness Businesses</h1>
+            <h1 className="font-bold text-[22px] text-purple-700">For Fitness Businesses</h1>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, veniam!</p>
           </div>
           <div className="h-[400px] bg-center bg-no-repeat bg-cover mt-auto transition duration-300 hover:scale-105"></div>
