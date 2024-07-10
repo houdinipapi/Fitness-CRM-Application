@@ -13,7 +13,7 @@ const Navbar = () => {
                 alt="logo"
                 width={128}
                 height={38}
-                className="w-50"
+                className="max-w-[140px] pt-2"
               />
             </Link>
             <div className="flex items-center gap-4 font-semibold">
