@@ -3,8 +3,17 @@ import Image from 'next/image'
 
 const Signup = () => {
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="container mx-auto p-4">
+    <div className="min-h-screen relative flex items-center justify-center">
+        {/* Background Image */}
+        <Image
+            src="/assets/signup/signup1.jpg"
+            alt="backround image"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+            className="z-0"
+        />
+        <div className="container mx-auto p-4 relative z-10">
             <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                 <div className="md:flex md:justify-center">
                     <div className="p-8 w-full">
