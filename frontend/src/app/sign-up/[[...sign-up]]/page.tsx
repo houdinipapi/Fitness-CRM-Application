@@ -20,7 +20,7 @@ const Signup = () => {
 
                             {/* Email */}
                             <div className="mb-4">
-                                <label htmlFor="email" className="block text-gray-700">Email</label>
+                                <label htmlFor="email" className="block font-bold text-gray-700">Email</label>
                                 <input
                                     type="text"
                                     name="email"
@@ -33,7 +33,7 @@ const Signup = () => {
                             {/* Password */}
                             <div className="mb-4">
                                 <div className="flex justify-between items-center">
-                                    <label htmlFor="password" className="block text-gray-700">Password</label>
+                                    <label htmlFor="password" className="block text-gray-700 font-bold">Password</label>
                                     {/* <a href="#" className="text-blue-500">Forgot Password?</a> */}
                                 </div>
                                 <input
@@ -48,7 +48,7 @@ const Signup = () => {
                             {/* Confirm Password */}
                             <div className="mb-4">
                                 <div className="flex justify-between items-center">
-                                    <label htmlFor="password" className="block text-gray-700"> Confirm Password</label>
+                                    <label htmlFor="password" className="block text-gray-700 font-bold"> Confirm Password</label>
                                 </div>
                                 <input
                                     type="password"
@@ -57,6 +57,23 @@ const Signup = () => {
                                     placeholder="Confirm Password"
                                     className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 />
+                            </div>
+
+                            {/* Signup button */}
+                            <div className="mb-4">
+                                <button
+                                    type="submit"
+                                    className="w-full px-4 py-2 mt-2 text-white bg-blue-500 hover:bg-blue-700 font-bold rounded-full focus:outline-none focus:shadow-outline"
+                                >
+                                    Sign Up
+                                </button>
+                            </div>
+
+                            {/* Already signed up */}
+                            <div className="text-center">
+                                <a href="#" className="text-blue-500 hover:text-blue-700 font-semibold">
+                                    Already have an account? Login
+                                </a>
                             </div>
                         </form>
                     </div>
