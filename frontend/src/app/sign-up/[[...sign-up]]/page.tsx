@@ -80,7 +80,7 @@ const Signup = () => {
 
                             {/* Already signed up */}
                             <div className="text-center">
-                                <a href="#" className="text-blue-500 hover:text-blue-700 font-semibold">
+                                <a href="#" className="text-blue-500 hover:text-blue-700 hover:underline font-semibold">
                                     Already have an account? Login
                                 </a>
                             </div>

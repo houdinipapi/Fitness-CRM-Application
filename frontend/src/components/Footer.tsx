@@ -6,14 +6,14 @@ const Footer = () => {
         <div className="container mx-auto px-4 text-center font-semibold">
             
             <ul className="mt-2 flex justify-center space-x-6">
-                <li className="hover:text-blue-700">
-                    <a href="/">HOME</a>
+                <li className="hover:text-blue-700 hover:underline">
+                    <a href="/">Home</a>
                 </li>
-                <li className="hover:text-blue-700">
-                    <a href="#">BLOG</a>
+                <li className="hover:text-blue-700 hover:underline">
+                    <a href="#">Blog</a>
                 </li>
-                <li className="hover:text-blue-700">
-                    <a href="#">STATUS</a>
+                <li className="hover:text-blue-700 hover:underline">
+                    <a href="#">Status</a>
                 </li>
             </ul>
 
