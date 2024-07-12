@@ -23,12 +23,12 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
     def validate_username(self, value):
-        if User.objects.filter(username=value).exists():
+        if User.objects.filter(username=value.lower()).exists():
             raise serializers.ValidationError("A user with that username already exists!")
         return value
 
     def validate_email(self, value):
-        if User.objects.filter(email=value).exists():
+        if User.objects.filter(email=value.lower()).exists():
             raise serializers.ValidationError("A user with that email already exists!")
         return value
     
@@ -40,8 +40,8 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data.pop("confirm_password")
         user = User(
-            email=validated_data["email"],
-            username=validated_data["username"]
+            email=validated_data["email"].lower(),
+            username=validated_data["username"].lower(),
         )
         user.set_password(validated_data["password"])
         user.save()
@@ -60,17 +60,17 @@ class UserLoginSerializer(serializers.Serializer):
             raise serializers.ValidationError(
                 "Please provide both username and password!"
             )
-        
+
         # Convert username to lowercase
         # username = username.lower()
-        
-        user = authenticate(username=username, password=password)
+
+        user = authenticate(username=username.lower(), password=password)
 
         if user is None:
             raise serializers.ValidationError(
                 "Invalid username or password!"
             )
-        
+
         refresh = RefreshToken.for_user(user)
 
         return {

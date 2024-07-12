@@ -13,6 +13,11 @@ class RegisterView(generics.CreateAPIView):
     serializer_class = UserSerializer
 
     def create(self, request, *args, **kwargs):
+
+        # Convert username and emaiil to lowercase
+        request.data["username"] = request.data.get("username", "").lower()
+        request.data["email"] = request.data.get("email", "").lower()
+
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
@@ -31,6 +36,11 @@ class LognView(generics.GenericAPIView):
     serializer_class = UserLoginSerializer
 
     def post(self, request, *args, **kwargs):
+
+        # Convert username to lowercase
+        request.data["username"] = request.data.get("username", "").lower()
+
+
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         tokens = serializer.validated_data["tokens"]
