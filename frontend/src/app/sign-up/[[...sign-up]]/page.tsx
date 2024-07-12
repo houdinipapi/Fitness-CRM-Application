@@ -1,7 +1,57 @@
-import React from 'react'
-import Image from 'next/image'
+"use client"
+
+import React, { useState } from 'react';
+import axios from "axios";
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const Signup = () => {
+
+    const [formData, setFormData] = useState({
+        email: "",
+        username: "",
+        password: "",
+        confirmPassword: "",
+    });
+
+    const [error, setError] = useState("");
+    const router = useRouter();
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setError("")
+
+        if (formData.password !== formData.confirmPassword) {
+            setError("Passwords do not match")
+            return;
+        }
+
+        try {
+            const res = await axios.post("/api/register", {
+                username: formData.username,
+                email: formData.email,
+                password: formData.password,
+                consirm_password: formData.confirmPassword,
+            });
+
+            if (res.status === 201) {
+                router.push("/sign-in");  // Redirect to sign-in/login page after successful signup
+            }
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                setError(error.response?.data.message || "An error occurred!");
+            }
+        }
+    };
+
+
   return (
     <div className="min-h-screen relative flex items-center justify-center">
         {/* Background Image */}
@@ -25,7 +75,7 @@ const Signup = () => {
                                 height={100}
                             />
                         </div>
-                        <form action="#" method="post" autoComplete="off" className="space-y-4">
+                        <form onSubmit={handleSubmit} className="space-y-4">
 
                             {/* Email */}
                             <div className="mb-4 mx-10">
@@ -36,6 +86,22 @@ const Signup = () => {
                                     id="email"
                                     placeholder="Your Email..."
                                     className="w-full bg-gray-200 px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                />
+                            </div>
+
+                            {/* Username */}
+                            <div className="mb-4 mx-10">
+                                <label htmlFor="username" className="block font-bold text-gray-700">Username</label>
+                                <input
+                                    type="text"
+                                    name="username"
+                                    id="username"
+                                    placeholder="Your Username..."
+                                    className="w-full bg-gray-200 px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                    value={formData.username}
+                                    onChange={handleChange}
                                 />
                             </div>
 
@@ -51,6 +117,8 @@ const Signup = () => {
                                     id="password"
                                     placeholder="Your Password..."
                                     className="w-full bg-gray-200 px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                    value={formData.password}
+                                    onChange={handleChange}
                                 />
                             </div>
 
@@ -65,6 +133,8 @@ const Signup = () => {
                                     id="confirm-password"
                                     placeholder="Confirm Your Password..."
                                     className="w-full bg-gray-200 px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                    value={formData.confirmPassword}
+                                    onChange={handleChange}
                                 />
                             </div>
 
@@ -77,6 +147,13 @@ const Signup = () => {
                                     Sign Up
                                 </button>
                             </div>
+
+                            {/* Error message */}
+                            {error && (
+                                <div className="mx-10 mb-4 text-center text-red-500">
+                                    {error}
+                                </div>
+                            )}
 
                             {/* Already signed up */}
                             <div className="text-center">
