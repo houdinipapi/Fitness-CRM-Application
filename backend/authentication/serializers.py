@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.contrib.auth import authenticate
+from rest_framework_simplejwt.tokens import RefreshToken
 
 class UserSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(write_only=True)
@@ -44,3 +46,37 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data["password"])
         user.save()
         return user
+
+
+class UserLoginSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=100, required=True)
+    password = serializers.CharField(write_only=True, required=True)
+
+    def validate(self, data):
+        username = data.get("username", None)
+        password = data.get("password", None)
+
+        if username is None or password is None:
+            raise serializers.ValidationError(
+                "Please provide both username and password!"
+            )
+        
+        # Convert username to lowercase
+        username = username.lower()
+        
+        user = authenticate(username=username, password=password)
+
+        if user is None:
+            raise serializers.ValidationError(
+                "Invalid username or password!"
+            )
+        
+        refresh = RefreshToken.for_user(user)
+
+        return {
+            "username": user.username,
+            "tokens": {
+                "refresh": str(refresh),
+                "access": str(refresh.access_token)
+            }
+        }
