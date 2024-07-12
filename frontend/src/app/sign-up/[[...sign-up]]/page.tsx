@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from "axios";
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -24,21 +24,21 @@ const Signup = () => {
         });
     };
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("")
 
         if (formData.password !== formData.confirmPassword) {
-            setError("Passwords do not match")
+            setError("Passwords do not match!")
             return;
         }
 
         try {
-            const res = await axios.post("/api/register", {
-                username: formData.username,
+            const res = await axios.post("http://127.0.0.1:8000/api/register/", {
                 email: formData.email,
+                username: formData.username,
                 password: formData.password,
-                consirm_password: formData.confirmPassword,
+                confirm_password: formData.confirmPassword,
             });
 
             if (res.status === 201) {
@@ -129,8 +129,8 @@ const Signup = () => {
                                 </div>
                                 <input
                                     type="password"
-                                    name="confirm-password"
-                                    id="confirm-password"
+                                    name="confirmPassword"
+                                    id="confirmPassword"
                                     placeholder="Confirm Your Password..."
                                     className="w-full bg-gray-200 px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                                     value={formData.confirmPassword}
