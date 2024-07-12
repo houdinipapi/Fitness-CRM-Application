@@ -62,7 +62,7 @@ class UserLoginSerializer(serializers.Serializer):
             )
         
         # Convert username to lowercase
-        username = username.lower()
+        # username = username.lower()
         
         user = authenticate(username=username, password=password)
 
