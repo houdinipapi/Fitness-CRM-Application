@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import axios from "axios";
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
 
 const Signin = () => {
 
@@ -14,6 +15,7 @@ const Signin = () => {
 
     const [error, setError] = useState("");
     const router = useRouter();
+    const { login } = useAuth();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
@@ -36,6 +38,7 @@ const Signin = () => {
                 // Store tokens in localstorage or any preferred storage
                 localStorage.setItem("access", res.data.access);
                 localStorage.setItem("refresh", res.data.refresh);
+                login();
                 router.push("/");  // Redirect to dashboard after successful login
             }
         } catch (error) {

@@ -7,16 +7,22 @@ import { useAuth } from '@/context/AuthContext';
 
 const Navbar = () => {
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // useEffect(() => {
+  //   const access = localStorage.getItem("access");
+  //   if (access) {
+  //     setIsAuthenticated(true);
+  //   } else {
+  //     setIsAuthenticated(false);
+  //   }
+  // }, []);
+
+  const { isAuthenticated, checkAuth } = useAuth();
 
   useEffect(() => {
-    const access = localStorage.getItem("access");
-    if (access) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-    }
-  }, []);
+    checkAuth();
+  }, [checkAuth]);
 
 
   return (
