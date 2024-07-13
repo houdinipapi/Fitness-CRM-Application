@@ -3,6 +3,7 @@ import { Raleway } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "@/components/Footer";
+import { AuthProvider } from "@/context/AuthContext";
 
 const raleway = Raleway({ subsets: ["latin"] });
 
@@ -22,9 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={raleway.className}>
+        <AuthProvider>
           <Navbar />
           {children}
           <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
