@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
+from rest_framework.views import APIView
 
 
 # Create your views here.
@@ -32,7 +33,7 @@ class RegisterView(generics.CreateAPIView):
         )
 
 
-class LognView(generics.GenericAPIView):
+class LoginView(generics.GenericAPIView):
     serializer_class = UserLoginSerializer
 
     def post(self, request, *args, **kwargs):
