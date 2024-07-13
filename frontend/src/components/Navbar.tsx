@@ -3,12 +3,9 @@
 import Link from 'next/link';
 import Image from "next/image";
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '@/context/AuthContext';
-
 
 const Navbar = () => {
 
-  const { isAuthenticated, logout } = useAuth();
 
   return (
     <header className="bg-gray-200">
@@ -24,7 +21,7 @@ const Navbar = () => {
               />
             </Link>
             <div className="flex items-center gap-4 font-semibold">
-              {isAuthenticated ? (
+              
                 <>
                   <Link href="#" legacyBehavior>
                     <a className="px-4 py-2 bg-white text-blue-400 rounded-full hover:bg-blue-500 hover:text-white border border-blue-400 transition">HOME</a>
@@ -38,7 +35,7 @@ const Navbar = () => {
                     <a className="px-4 py-2 bg-white text-blue-400 rounded-full hover:bg-blue-500 hover:text-white border border-blue-400 transition">STATUS</a>
                   </Link>
                 </>
-              ) : (
+             
                 <>
                   <Link href="/sign-in" legacyBehavior>
                     <a className="px-4 py-2 bg-white text-blue-400 rounded-full hover:bg-blue-500 hover:text-white border border-blue-400 transition">LOGIN</a>
@@ -48,7 +45,7 @@ const Navbar = () => {
                     <a className="px-4 py-2 bg-white text-blue-400 rounded-full hover:bg-blue-500 hover:text-white border border-blue-400 transition">SIGNUP</a>
                   </Link>
                 </>
-              )}
+              
               </div>
           </div>
       </div>
