@@ -52,6 +52,10 @@ const Navbar = () => {
                   <Link href="#" legacyBehavior>
                     <a className="px-4 py-2 bg-white text-blue-400 rounded-full hover:bg-blue-500 hover:text-white border border-blue-400 transition">STATUS</a>
                   </Link>
+
+                  <Link href="#" legacyBehavior>
+                    <a className="px-4 py-2 bg-white text-blue-400 rounded-full hover:bg-blue-500 hover:text-white border border-blue-400 transition">LOGOUT</a>
+                  </Link>
                 </>
               ) : (
                 <>
