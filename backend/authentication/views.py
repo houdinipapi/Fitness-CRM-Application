@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics, status
-from .serializers import UserLoginSerializer, UserSerializer, UserLogoutSerializer
+from .serializers import UserLoginSerializer, UserSerializer, UserLogoutSerializer, UserProfileSerializer
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -58,24 +58,19 @@ class LoginView(generics.GenericAPIView):
         )
     
 
+class UserProfileView(generics.RetrieveUpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = User.objects.all()
+    serializer_class = UserProfileSerializer
+
+    def get_object(self):
+        return self.request.user
+    
+
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
-    # permission_classes = [AllowAny]
 
     def post(self, request):
-        # serializer = UserLogoutSerializer(data=request.data)
-        # if serializer.is_valid(raise_exception=True):
-        #     serializer.save()
-        #     return Response(
-        #         {
-        #             "message": "User logged out successfully"
-        #         },
-        #         status=status.HTTP_205_RESET_CONTENT
-        #     )
-        # return Response(
-        #     serializer.errors,
-        #     status=status.HTTP_400_BAD_REQUEST
-        # )
 
         try:
             refresh_token = request.data["refresh"]
@@ -93,23 +88,5 @@ class LogoutView(APIView):
                     "error": str(e)
                 }, status=status.HTTP_400_BAD_REQUEST
             )
-    
-
-        # try:
-        #     refresh_token = request.data["refresh_token"]
-        #     token = RefreshToken(refresh_token)
-        #     token.blacklist()
-        #     return Response(
-        #         {
-        #             "message": "User logged out successfully"
-        #         },
-        #         status=status.HTTP_205_RESET_CONTENT
-        #     )
-        # except Exception as e:
-        #     return Response(
-        #         {
-        #             "error": str(e)
-        #         }, status=status.HTTP_400_BAD_REQUEST
-        #     )
 
     

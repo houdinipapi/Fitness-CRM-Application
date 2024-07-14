@@ -53,7 +53,7 @@ class UserLoginSerializer(serializers.Serializer):
     password = serializers.CharField(write_only=True, required=True)
 
     def validate(self, data):
-        username = data.get("username", None)
+        username = data.get("username", None).lower()
         password = data.get("password", None)
 
         if username is None or password is None:
@@ -64,7 +64,7 @@ class UserLoginSerializer(serializers.Serializer):
         # Convert username to lowercase
         # username = username.lower()
 
-        user = authenticate(username=username.lower(), password=password)
+        user = authenticate(username=username, password=password)
 
         if user is None:
             raise serializers.ValidationError(
@@ -80,6 +80,30 @@ class UserLoginSerializer(serializers.Serializer):
                 "access": str(refresh.access_token)
             }
         }
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            "id",
+            "username",
+            "email",
+            "first_name",
+            "last_name"
+        ]
+        read_only_fields = [
+            "id",
+            "email"
+        ]
+
+    def update(self, instance, validated_data):
+        instance.username = validated_data.get("username", instance.username).lower()
+        instance.email = validated_data.get("email", instance.email).lower()
+        instance.first_name = validated_data.get("first_name", instance.first_name)
+        instance.last_name = validated_data.get("last_name", instance.last_name)
+        instance.save()
+        return instance
 
 
 class UserLogoutSerializer(serializers.Serializer):
