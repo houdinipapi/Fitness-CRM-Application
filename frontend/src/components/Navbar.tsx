@@ -18,7 +18,7 @@ const Navbar = () => {
   //   }
   // }, []);
 
-  const { isAuthenticated, checkAuth } = useAuth();
+  const { isAuthenticated, checkAuth, logout } = useAuth();
 
   useEffect(() => {
     checkAuth();
@@ -53,9 +53,15 @@ const Navbar = () => {
                     <a className="px-4 py-2 bg-white text-blue-400 rounded-full hover:bg-blue-500 hover:text-white border border-blue-400 transition">STATUS</a>
                   </Link>
 
-                  <Link href="#" legacyBehavior>
+                  {/* <Link href="#" legacyBehavior>
                     <a className="px-4 py-2 bg-white text-blue-400 rounded-full hover:bg-blue-500 hover:text-white border border-blue-400 transition">LOGOUT</a>
-                  </Link>
+                  </Link> */}
+                  <button
+                    onClick={logout}
+                    className="px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-700 transition"
+                  >
+                    LOGOUT
+                  </button>
                 </>
               ) : (
                 <>

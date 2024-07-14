@@ -1,6 +1,7 @@
 "use client"
 
 import React, { createContext, useState, useContext, ReactNode, useEffect } from "react";
+import axios from "axios";
 
 
 interface AuthContextType {
@@ -23,16 +24,32 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setIsAuthenticated(true);
     };
 
-    const logout = () => {
-        setIsAuthenticated(false);
-        localStorage.removeItem("access");
-        localStorage.removeItem("refresh");
+    // const logout = () => {
+    //     setIsAuthenticated(false);
+    //     localStorage.removeItem("access");
+    //     localStorage.removeItem("refresh");
+    // };
+
+    const logout = async () => {
+        const refreshToken = localStorage.getItem("refresh");
+        if (refreshToken) {
+            try {
+                await axios.post("http://127.0.0.1:8000/api/logout/", {
+                    refresh_token: refreshToken,
+                });
+                setIsAuthenticated(false);
+                localStorage.removeItem("access");
+                localStorage.removeItem("refresh");
+            } catch (error) {
+                console.error("Failed to logout:", error);
+            }
+        }
     };
 
     const checkAuth = () => {
         const access = localStorage.getItem("access");
         setIsAuthenticated(!!access);
-    }
+    };
 
     return (
         <AuthContext.Provider value={{ isAuthenticated, login, logout, checkAuth }}>

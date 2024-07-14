@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics, status
-from .serializers import UserLoginSerializer, UserSerializer
+from .serializers import UserLoginSerializer, UserSerializer, UserLogoutSerializer
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -61,22 +61,35 @@ class LoginView(generics.GenericAPIView):
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def post(self, request):
-        try:
-            refresh_token = request.data["refresh"]
-            token = RefreshToken(refresh_token)
-            token.blacklist()
+    def post(self, request, *args, **kwargs):
+        serializer = UserLogoutSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
             return Response(
                 {
                     "message": "User logged out successfully"
                 },
                 status=status.HTTP_205_RESET_CONTENT
             )
-        except Exception as e:
-            return Response(
-                {
-                    "error": str(e)
-                }, status=status.HTTP_400_BAD_REQUEST
-            )
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
+        # try:
+        #     refresh_token = request.data["refresh_token"]
+        #     token = RefreshToken(refresh_token)
+        #     token.blacklist()
+        #     return Response(
+        #         {
+        #             "message": "User logged out successfully"
+        #         },
+        #         status=status.HTTP_205_RESET_CONTENT
+        #     )
+        # except Exception as e:
+        #     return Response(
+        #         {
+        #             "error": str(e)
+        #         }, status=status.HTTP_400_BAD_REQUEST
+        #     )
 
     
