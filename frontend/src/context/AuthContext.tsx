@@ -34,8 +34,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const refreshToken = localStorage.getItem("refresh");
         if (refreshToken) {
             try {
+                // console.log(refreshToken)
                 await axios.post("http://127.0.0.1:8000/api/logout/", {
-                    refresh_token: refreshToken,
+                    refresh: refreshToken,
+                }, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem("access")}`
+                    }
                 });
                 setIsAuthenticated(false);
                 localStorage.removeItem("access");
@@ -44,6 +50,42 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 console.error("Failed to logout:", error);
             }
         }
+
+        // try {
+        //     const accessToken = localStorage.getItem("access");
+        //     const refreshToken = localStorage.getItem("refresh");
+
+        //     if (!accessToken || !refreshToken) {
+        //         console.log("No access or refresh token found!")
+        //         return;
+        //     } else {
+        //         console.log("Access Token: ", accessToken);
+        //         console.log("Refresh Token: ", refreshToken);
+        //     }
+
+        //     const response = await axios.post("http://127.0.0.1:8000/api/logout/", {
+        //         refresh: refreshToken,
+        //     }, {
+        //         withCredentials: true,
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //             "Authorization": `Bearer ${accessToken}`,
+        //         },
+        //     });
+        //     if (response.status === 200) {
+        //         console.log("user has been logged out!")
+        //         setIsAuthenticated(false);
+        //         localStorage.removeItem("access");
+        //         localStorage.removeItem("refresh");
+        //         // clearCookies();
+        //         window.location.href = "/";
+        //     }
+        // } catch (error: any) {
+        //     console.error("Failed to logout:", error);
+        //     if (error.response) {
+        //         console.error("Error response:", error.response.data)
+        //     }
+        // }
     };
 
     const checkAuth = () => {

@@ -62,20 +62,39 @@ class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
     # permission_classes = [AllowAny]
 
-    def post(self, request, *args, **kwargs):
-        serializer = UserLogoutSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
+    def post(self, request):
+        # serializer = UserLogoutSerializer(data=request.data)
+        # if serializer.is_valid(raise_exception=True):
+        #     serializer.save()
+        #     return Response(
+        #         {
+        #             "message": "User logged out successfully"
+        #         },
+        #         status=status.HTTP_205_RESET_CONTENT
+        #     )
+        # return Response(
+        #     serializer.errors,
+        #     status=status.HTTP_400_BAD_REQUEST
+        # )
+
+        try:
+            refresh_token = request.data["refresh"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
             return Response(
                 {
                     "message": "User logged out successfully"
                 },
                 status=status.HTTP_205_RESET_CONTENT
             )
-        return Response(
-            serializer.errors,
-            status=status.HTTP_400_BAD_REQUEST
-        )
+        except Exception as e:
+            return Response(
+                {
+                    "error": str(e)
+                }, status=status.HTTP_400_BAD_REQUEST
+            )
+    
+
         # try:
         #     refresh_token = request.data["refresh_token"]
         #     token = RefreshToken(refresh_token)
