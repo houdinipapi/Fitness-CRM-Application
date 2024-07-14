@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/context/AuthContext";
+// import { ProfileProvider } from "@/context/ProfileContext";
 
 const raleway = Raleway({ subsets: ["latin"] });
 
@@ -24,9 +25,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={raleway.className}>
         <AuthProvider>
-          <Navbar />
-          {children}
-          <Footer />
+          {/* <ProfileProvider> */}
+            <Navbar />
+            {children}
+            <Footer />
+          {/* </ProfileProvider> */}
         </AuthProvider>
       </body>
     </html>

@@ -49,8 +49,8 @@ const Navbar = () => {
                     <a className="px-4 py-2 bg-white text-blue-400 rounded-full hover:bg-blue-500 hover:text-white border border-blue-400 transition">BLOG</a>
                   </Link>
 
-                  <Link href="#" legacyBehavior>
-                    <a className="px-4 py-2 bg-white text-blue-400 rounded-full hover:bg-blue-500 hover:text-white border border-blue-400 transition">STATUS</a>
+                  <Link href="/profile" legacyBehavior>
+                    <a className="px-4 py-2 bg-white text-blue-400 rounded-full hover:bg-blue-500 hover:text-white border border-blue-400 transition">PROFILE</a>
                   </Link>
 
                   {/* <Link href="#" legacyBehavior>
