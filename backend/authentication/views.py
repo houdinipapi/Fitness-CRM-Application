@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 
 # Create your views here.
@@ -60,6 +60,7 @@ class LoginView(generics.GenericAPIView):
 
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
+    # permission_classes = [AllowAny]
 
     def post(self, request, *args, **kwargs):
         serializer = UserLogoutSerializer(data=request.data)
